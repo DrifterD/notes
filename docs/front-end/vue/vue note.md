@@ -3,7 +3,14 @@
 ``` js 中被定义为 falsy (即， 除了false，0，“”，null，undefined和NaN 外)
 ```
 
+## 疑问
+1. 自定义事件到底是否区分大小写？v-on 和@有区别吗？亲测事件名称区分大小写
+
 ## lodash 
+
+
+
+## 
 
 ## class 与style 
 
@@ -122,12 +129,48 @@ this.obj=Object.assign({},this.obj,{
 #### 驼峰 vs kebab-case
 > HTML 特性是不区分大小写的。所以，当使用的不是字符串模板时，camelCase (驼峰式命名) 的 prop 需要转换为相对应的 kebab-case (短横线分隔式命名)：
 
+> 事件名称不会自动转换大小写，且必须完全匹配。不存在camelCase 转换 kebab-case 的情况。v-on事件名称会自动全部转成小写，html大小写不明感
+建议组件自定义事件名用kebab-case 方式名称 
+
 #### 数据单向流
 在父子级组件中，数据流是单向，只能通过prop从父级流向子级。如果希望通过prop来定义子级的初始化数据最好使用prop赋值局部变量
 
 > js中对象和数组引用是指向同一个内存地址(引用类型)，如果在子级中操作prop的对象或者数组可能会破坏父级数据对象
 
 ### 自定义组件
+
+#### 自定义组件中使用 v-model
+vuejs v-model语法是语法糖效果，下面两段代码一致
+
+```html
+<self-component v-model="text" ></self-component>
+```
+
+```html
+<self-component v-bind:value="text" v-on:input="text=$event"></self-component>
+```
+
+> 即:v-model 其实是指向子组件prop名为value的，且通过触发input事件向父级抛送。父级处理input事件
+这也是为什么第二段代码使用`v-on:input="text=$event"`
+
+但是，使用`v-model`语法有默认前提条件:
+1. 子组件props 必须value
+2. 子组件必须抛送input事件给父级：`v-on:input='$emit('input',$event)'` 
+
+> $emit('input',$event) 这个只是demo极简代码写法，可以根据实际应用写更复杂
+
+>2.2+ 增加 model模块 扩展v-model
+可以通过设置model改变默认的props的名称和事件名称
+
+```apple js
+model:{
+    props:'selfProp',
+    event:'selfEvent'
+}
+```
+
+
+
 #### 简写函数
 在只想bind和update时触发异常可用这昂处理
 ```
