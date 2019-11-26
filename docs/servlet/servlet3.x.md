@@ -11,11 +11,13 @@ Servlet 线程不再需要一直阻塞，直到业务处理完毕才能再输出
 
 ### servlet-api vs javax.servlet-api
 servlet-api和javax.servlet-api groupId一致，都是javax.servlet. **但是,javax.servlet-api 是3.x以上版本，servelt-api是3.x一下版本**
-查看maven镜像仓库：central
-javax.servlet-api 最低版本是3.0.x
-（）[]
 
+查看maven镜像仓库：central
+
+javax.servlet-api 最低版本是3.0.x
+![javax.servelt-api](resources/javax.servlet-api.png "javax.servelt-api")
 
 servlet-api 的最低版本是2.2
+![servelt-api](resources/servelt-api.png "servelt-api")
 
 
