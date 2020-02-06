@@ -154,7 +154,7 @@ Mysql允许一个列建立多个索引，冗余索引部分场景下有效
 #### 维护索引和表
 
 索引损坏的常用命令：
-1. optimize table
+1. optimize table: 支持引擎：InnoDB,MyISAM, ARCHIVE；缺点：表级锁;[官方引用](https://dev.mysql.com/doc/refman/5.7/en/optimize-table.html)
 2. check table xxx
 3. repair table (alter table xxx engine=xxx 即不做任何修改的alter命令来重建表)
 
@@ -180,6 +180,8 @@ Mysql中存在三种形式数据碎片：
 count 查询非空的行数，`count(*)` 会忽略列值内容并且获取所有行数。
 `count(col)`则统计指定列且非空的数量
 count也支持表达式使用例如:`count(col=1 or null)`
+
+
 
 
 
