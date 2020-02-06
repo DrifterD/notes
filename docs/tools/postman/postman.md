@@ -1,7 +1,5 @@
 # Postman大秘密
 
-[TOC]
-
 ## 变量
 >postman 中变量分为全局变量(Environment)和环境变量（Global）
 
